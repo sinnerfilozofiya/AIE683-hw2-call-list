@@ -1,0 +1,40 @@
+{
+  "student_id": "N26120261",
+  "leak_column": "duration",
+  "positive_rate_last_20pct": 0.31582439455932765,
+  "forward_auc_last_20pct": {
+    "value": 0.6875721841993627,
+    "run_id": "4f156630e65d4d2d9142a764ba11dcd8",
+    "metric": "forward_auc_last_20pct"
+  },
+  "models_compared": [
+    "logistic_regression",
+    "random_forest",
+    "hist_gradient_boosting",
+    "lightgbm",
+    "mlp"
+  ],
+  "configs_per_model": 20,
+  "chosen_model": "mlp",
+  "test_auc": {
+    "value": 0.6875721841993627,
+    "run_id": "8fb9b04e7e3f4c7ba523c4e9497cade5",
+    "metric": "test_auc_chosen"
+  },
+  "baseline_test_auc": {
+    "value": 0.6848376169604742,
+    "run_id": "8fb9b04e7e3f4c7ba523c4e9497cade5",
+    "metric": "test_auc_baseline"
+  },
+  "chosen_minus_baseline_auc_ci": [
+    -0.0021982650328483165,
+    0.007751057994777791
+  ],
+  "expected_auc_new_clients": 0.6848376169604742,
+  "memo": {
+    "decision": "deploy_baseline",
+    "expected_lift_top10": 1.6146813260702513,
+    "main_risk": "campaign_conditions_change",
+    "justification": "We compared logistic regression, random forest, histogram gradient boosting, LightGBM and a small neural net under the same tuning budget, without using call duration (only known after the call). On held-out later clients the neural net was only +0.003 AUC above logistic, and the 95% interval for that gap includes zero, so the gain is not clearly real. Deploy the simpler logistic model. Expect about 1.61x more subscribers in the top 10% of the ranked list than by calling at random. Main risk: subscription rates rose sharply over time, so the next campaign may differ from the past."
+  }
+}
